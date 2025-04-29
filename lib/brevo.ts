@@ -1,4 +1,4 @@
-import * as SibApiV3Sdk from "sib-api-v3-typescript";
+import * as Brevo from "@getbrevo/brevo";
 
 export async function sendOTP(email: string, otp: string) {
   try {
@@ -12,26 +12,25 @@ export async function sendOTP(email: string, otp: string) {
     if (!process.env.BREVO_API_KEY || !process.env.SMTP_EMAIL) {
       return {
         status: 500,
-        message: "Brevo API key is not set in environment variables.",
+        message:
+          "Brevo API key or SMTP email is not set in environment variables.",
       };
     }
 
     console.log("Sending OTP to:", email, "with code:", otp);
 
-    const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
+    const apiInstance = new Brevo.TransactionalEmailsApi();
 
     apiInstance.setApiKey(
-      SibApiV3Sdk.TransactionalEmailsApiApiKeys.apiKey,
+      Brevo.TransactionalEmailsApiApiKeys.apiKey,
       process.env.BREVO_API_KEY
     );
 
-    const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
-
+    const sendSmtpEmail = new Brevo.SendSmtpEmail();
     sendSmtpEmail.sender = {
       name: "HR Bot",
       email: process.env.SMTP_EMAIL,
     };
-
     sendSmtpEmail.to = [{ email }];
     sendSmtpEmail.subject = "Your HR Bot verification code";
     sendSmtpEmail.htmlContent = `
@@ -48,14 +47,14 @@ export async function sendOTP(email: string, otp: string) {
       </div>
     `;
 
-    const result = await apiInstance.sendTransacEmail(sendSmtpEmail);
+    const data = await apiInstance.sendTransacEmail(sendSmtpEmail);
 
-    console.log("Brevo API response:", JSON.stringify(result, null, 2));
+    console.log("Brevo API response:", JSON.stringify(data, null, 2));
 
     return {
       status: 200,
       message: "OTP sent successfully.",
-      messageId: result.body.messageId,
+      messageId: data.body.messageId,
     };
   } catch (error) {
     console.error("Error sending OTP:", error);

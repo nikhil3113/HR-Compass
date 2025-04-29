@@ -59,7 +59,7 @@ export default function SignIn() {
         throw new Error('Invalid OTP');
       }
       
-      router.push('/dashboard');
+      router.push('/chat');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Authentication failed');
     } finally {
