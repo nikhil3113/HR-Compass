@@ -1,103 +1,208 @@
 import Image from "next/image";
+import Link from "next/link";
+import {
+  ArrowRight,
+  CheckCircle,
+  MessageSquare,
+  FileText,
+  Target,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+    <div className="flex flex-col min-h-screen">
+      <section className="w-full py-20 md:py-32 bg-gradient-to-b from-white to-blue-50 dark:from-gray-900 dark:to-gray-800">
+        <div className="container px-4 md:px-6 mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-16">
+          <div className="flex flex-col gap-4 md:gap-6 md:w-1/2">
+            <h1 className="text-4xl md:text-6xl font-bold tracking-tighter">
+              Your Personal <span className="text-primary">HR Assistant</span>
+            </h1>
+            <p className="text-xl text-gray-500 dark:text-gray-400 max-w-[600px]">
+              Get expert career guidance, job search advice, and professional
+              communication help anytime, anywhere.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 pt-4">
+              <Button asChild size="lg" className="gap-2">
+                <Link href="/chat">
+                  Get Started <ArrowRight className="h-4 w-4" />
+                </Link>
+              </Button>
+              <Button asChild variant="outline" size="lg">
+                <Link href="#features">Learn More</Link>
+              </Button>
+            </div>
+          </div>
+          <div className="md:w-1/2 relative w-full aspect-square md:aspect-auto md:h-[500px] rounded-xl overflow-hidden">
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+              src="/hero-image.svg"
+              alt="HR Assistant Dashboard"
+              fill
+              className="object-contain"
+              priority
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </section>
+
+      <section
+        id="features"
+        className="w-full py-16 md:py-24 bg-white dark:bg-gray-900"
+      >
+        <div className="container px-4 md:px-6 mx-auto">
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+              Everything You Need For Your Career Journey
+            </h2>
+            <p className="mt-4 text-lg text-gray-500 dark:text-gray-400 max-w-[700px] mx-auto">
+              Whether you&apos;re just starting out or looking to advance,
+              HRSpark provides tailored guidance for every step of your career.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="flex flex-col p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md transition-shadow">
+              <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                <MessageSquare className="h-6 w-6 text-primary" />
+              </div>
+              <h3 className="text-xl font-bold mb-2">Personalized Guidance</h3>
+              <p className="text-gray-500 dark:text-gray-400 mb-4">
+                Receive tailored advice based on your experience level and
+                career goals.
+              </p>
+              <ul className="space-y-2 mt-auto">
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="h-4 w-4 text-green-500" />
+                  <span className="text-sm">Job search strategies</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="h-4 w-4 text-green-500" />
+                  <span className="text-sm">Interview preparation</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="h-4 w-4 text-green-500" />
+                  <span className="text-sm">Career transition planning</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Feature 2 */}
+            <div className="flex flex-col p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md transition-shadow">
+              <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                <FileText className="h-6 w-6 text-primary" />
+              </div>
+              <h3 className="text-xl font-bold mb-2">Application Documents</h3>
+              <p className="text-gray-500 dark:text-gray-400 mb-4">
+                Get help optimizing your resume, cover letter, and professional
+                communications.
+              </p>
+              <ul className="space-y-2 mt-auto">
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="h-4 w-4 text-green-500" />
+                  <span className="text-sm">Resume feedback</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="h-4 w-4 text-green-500" />
+                  <span className="text-sm">Cover letter templates</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="h-4 w-4 text-green-500" />
+                  <span className="text-sm">Professional email drafting</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="flex flex-col p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md transition-shadow">
+              <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                <Target className="h-6 w-6 text-primary" />
+              </div>
+              <h3 className="text-xl font-bold mb-2">Career Development</h3>
+              <p className="text-gray-500 dark:text-gray-400 mb-4">
+                Develop strategies for long-term career growth and advancement.
+              </p>
+              <ul className="space-y-2 mt-auto">
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="h-4 w-4 text-green-500" />
+                  <span className="text-sm">Skill development planning</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="h-4 w-4 text-green-500" />
+                  <span className="text-sm">Networking strategies</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="h-4 w-4 text-green-500" />
+                  <span className="text-sm">Salary negotiation tips</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="w-full py-16 md:py-24 bg-gray-50 dark:bg-gray-800">
+        <div className="container px-4 md:px-6 mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+              How It Works
+            </h2>
+            <p className="mt-4 text-lg text-gray-500 dark:text-gray-400 max-w-[700px] mx-auto">
+              Get the career help you need in three simple steps.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+            <div className="relative flex flex-col items-center text-center">
+              <div className="h-16 w-16 rounded-full bg-primary flex items-center justify-center text-white text-2xl font-bold mb-4">
+                1
+              </div>
+              <h3 className="text-xl font-bold mb-2">Sign In</h3>
+              <p className="text-gray-500 dark:text-gray-400">
+                Create your account to access personalized HR assistance.
+              </p>
+
+              <div className="hidden md:block absolute top-8 left-[calc(100%_-_16px)] h-[2px] w-[calc(100%_-_32px)] bg-primary/30 z-0"></div>
+            </div>
+
+            <div className="relative flex flex-col items-center text-center">
+              <div className="h-16 w-16 rounded-full bg-primary flex items-center justify-center text-white text-2xl font-bold mb-4">
+                2
+              </div>
+              <h3 className="text-xl font-bold mb-2">Ask Questions</h3>
+              <p className="text-gray-500 dark:text-gray-400">
+                Get immediate answers to all your career and HR questions.
+              </p>
+
+              <div className="hidden md:block absolute top-8 left-[calc(100%_-_16px)] h-[2px] w-[calc(100%_-_32px)] bg-primary/30 z-0"></div>
+            </div>
+
+            <div className="flex flex-col items-center text-center">
+              <div className="h-16 w-16 rounded-full bg-primary flex items-center justify-center text-white text-2xl font-bold mb-4">
+                3
+              </div>
+              <h3 className="text-xl font-bold mb-2">Get Guidance</h3>
+              <p className="text-gray-500 dark:text-gray-400">
+                Receive personalized advice and actionable strategies for
+                success.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="w-full py-16 md:py-24 bg-primary text-white">
+        <div className="container px-4 md:px-6 mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
+            Ready to Advance Your Career?
+          </h2>
+          <p className="text-xl opacity-90 mb-8 max-w-[700px] mx-auto">
+            Get personalized career guidance and HR advice today.
+          </p>
+          <Button asChild size="lg" variant="secondary" className="gap-2">
+            <Link href="/chat">
+              Start Chatting Now <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Button>
+        </div>
+      </section>
     </div>
   );
 }
