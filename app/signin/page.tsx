@@ -18,7 +18,7 @@ import {
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
- function SignInContent() {
+function SignInContent() {
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
   const [isOtpSent, setIsOtpSent] = useState(false);
@@ -36,14 +36,11 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
     try {
       // For login, first check if user exists and is verified
-      const response = await fetch(
-        "http://localhost:3000/api/auth/check-user",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email }),
-        }
-      );
+      const response = await fetch("/api/auth/check-user", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
       console.log(response);
       if (!response.ok) {
         const errorData = await response.json().catch(() => null);
@@ -315,17 +312,17 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
   );
 }
 
-
-
 export default function SigninPage() {
   return (
-    <Suspense fallback={
-      <div className="flex min-h-screen flex-col items-center justify-center p-4 bg-gray-50 dark:bg-gray-900">
-        <Card className="w-full max-w-md border-none shadow-lg p-8 flex justify-center items-center">
-          <Loader2 className="h-8 w-8 animate-spin text-primary" />
-        </Card>
-      </div>
-    }>
+    <Suspense
+      fallback={
+        <div className="flex min-h-screen flex-col items-center justify-center p-4 bg-gray-50 dark:bg-gray-900">
+          <Card className="w-full max-w-md border-none shadow-lg p-8 flex justify-center items-center">
+            <Loader2 className="h-8 w-8 animate-spin text-primary" />
+          </Card>
+        </div>
+      }
+    >
       <SignInContent />
     </Suspense>
   );
