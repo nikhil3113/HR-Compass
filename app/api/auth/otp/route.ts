@@ -4,10 +4,39 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
-    const { email } = await req.json();
+    const { email, action } = await req.json();
 
-    if (!email) {
-      return NextResponse.json({ error: "Email is required" }, { status: 400 });
+    if (!email || !action) {
+      return NextResponse.json(
+        { error: "Email and action are required" },
+        { status: 400 }
+      );
+    }
+
+    if (action === "signup") {
+      const existingUser = await prisma.user.findUnique({
+        where: { email },
+      });
+
+      if (existingUser) {
+        return NextResponse.json(
+          { error: "Email already registered. Please login instead." },
+          { status: 400 }
+        );
+      }
+    }
+
+    else if (action === "verify-login") {
+      const user = await prisma.user.findUnique({
+        where: { email },
+      });
+
+      if (!user) {
+        return NextResponse.json(
+          { error: "Account not found. Please sign up instead." },
+          { status: 400 }
+        );
+      }
     }
 
     const otp = Math.floor(100000 + Math.random() * 900000).toString();

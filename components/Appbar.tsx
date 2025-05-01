@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
-import { Menu, User, LogOut } from "lucide-react";
+import { Menu, User, LogOut, BotIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
@@ -51,8 +51,8 @@ export function AppBar() {
     >
       <div className="container flex h-16 items-center justify-between px-10">
         <div className="flex items-center gap-2">
-          <Link href="/" className="font-bold text-xl">
-            HR Bot
+          <Link href="/" className="font-bold text-xl flex justify-center items-center gap-2">
+          <BotIcon/>   HR Compass
           </Link>
         </div>
 

@@ -31,11 +31,13 @@ export function ChatBot() {
   const chatContainerRef = useRef<HTMLDivElement>(null);
 
   const suggestions = [
-    "What's the company policy on vacation days?",
-    "How do I request time off?",
-    "Tell me about our health benefits",
-    "What's the work from home policy?",
-  ];
+    "Help me optimize my resume for tech jobs",
+    "How do I prepare for a job interview?",
+    "What skills should I develop for a career in marketing?",
+    "How to write a professional cover letter?",
+    "Tips for negotiating my salary offer",
+    "How to build a professional network on LinkedIn"
+  ];  
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });

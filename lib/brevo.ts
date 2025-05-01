@@ -28,11 +28,11 @@ export async function sendOTP(email: string, otp: string) {
 
     const sendSmtpEmail = new Brevo.SendSmtpEmail();
     sendSmtpEmail.sender = {
-      name: "HR Bot",
+      name: "HR Compass",
       email: process.env.SMTP_EMAIL,
     };
     sendSmtpEmail.to = [{ email }];
-    sendSmtpEmail.subject = "Your HR Bot verification code";
+    sendSmtpEmail.subject = "Your HR Caompass verification code";
     sendSmtpEmail.htmlContent = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #f0f0f0; border-radius: 5px;">
         <h1 style="color: #333; text-align: center;">HR Bot Verification</h1>
