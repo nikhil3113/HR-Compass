@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Mail, KeyRound, Loader2 } from "lucide-react";
@@ -18,7 +18,7 @@ import {
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-export default function SigninPage() {
+ function SignInContent() {
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
   const [isOtpSent, setIsOtpSent] = useState(false);
@@ -28,14 +28,7 @@ export default function SigninPage() {
 
   const router = useRouter();
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") || "/chat";
-
-  useEffect(() => {
-    console.log(
-      "Signin page loaded, search params:",
-      Object.fromEntries(searchParams.entries())
-    );
-  }, [searchParams]);
+  const callbackUrl = searchParams?.get("callbackUrl") || "/chat";
 
   async function handleLoginEmail() {
     setIsLoading(true);
@@ -43,15 +36,20 @@ export default function SigninPage() {
 
     try {
       // For login, first check if user exists and is verified
-      const response = await fetch("http://localhost:3000/api/auth/check-user", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
-      console.log(response)
+      const response = await fetch(
+        "http://localhost:3000/api/auth/check-user",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email }),
+        }
+      );
+      console.log(response);
       if (!response.ok) {
         const errorData = await response.json().catch(() => null);
-        const errorMessage = errorData?.error || `Server error: ${response.status} ${response.statusText}`;
+        const errorMessage =
+          errorData?.error ||
+          `Server error: ${response.status} ${response.statusText}`;
         // console.error("API Error:", errorMessage, errorData);
         throw new Error(errorMessage);
       }
@@ -314,5 +312,21 @@ export default function SigninPage() {
         </CardFooter>
       </Card>
     </div>
+  );
+}
+
+
+
+export default function SigninPage() {
+  return (
+    <Suspense fallback={
+      <div className="flex min-h-screen flex-col items-center justify-center p-4 bg-gray-50 dark:bg-gray-900">
+        <Card className="w-full max-w-md border-none shadow-lg p-8 flex justify-center items-center">
+          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        </Card>
+      </div>
+    }>
+      <SignInContent />
+    </Suspense>
   );
 }
