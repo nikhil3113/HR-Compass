@@ -35,7 +35,7 @@ export default function Home() {
           </div>
           <div className="md:w-1/2 relative w-full aspect-square md:aspect-auto md:h-[500px] rounded-xl overflow-hidden">
             <Image
-              src="/image.png "
+              src="/image.png"
               alt="HR Assistant Dashboard"
               fill
               className="object-contain"
