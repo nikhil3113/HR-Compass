@@ -2,7 +2,11 @@ import { authOptions } from "@/lib/auth";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
-import { Message } from "ai";
+// import { Message } from "ai";
+type Message = {
+  role: "user" | "assistant" | "system";
+  content: string;
+};
 
 export async function POST(req: Request) {
   if (!process.env.GOOGLE_API_KEY) {
